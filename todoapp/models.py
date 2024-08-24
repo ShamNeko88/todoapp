@@ -14,7 +14,7 @@ class Task(models.Model):
         max_length=100
     )
     description = models.TextField(
-        null=True, blake=True
+        null=True, blank=True
     )
     completed = models.BooleanField(
         default=False
@@ -28,3 +28,19 @@ class Task(models.Model):
 
     class Meta:
         ordering = ["completed"]
+
+
+class TestModel(models.Model):
+    memo = models.TextField(
+        null=True,
+        blank=True
+    )
+    insert_date = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def __str__(self):
+        return self.memo
+
+    class Meta:
+        ordering = ["memo"]
