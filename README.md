@@ -60,3 +60,17 @@ TEMPLATES = [
     },
 ]
 ```
+
+### リダイレクト
+###### クラスベースでviews.pyを定義してる場合
+- reverse_lazyを使う
+```python
+# 例
+import django.urls import reverse_lazy
+
+
+class TaskCreate(CreateView):
+    model = Task
+    fields = "__all__"
+    success_url = reverse_lazy("tasks")
+```
