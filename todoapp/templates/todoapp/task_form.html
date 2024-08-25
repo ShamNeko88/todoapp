@@ -1,4 +1,5 @@
 <h2>タスクの追加</h2>
+<a href="{% url 'tasks' %}">タスク一覧</a>
 
 <form actinon="" method="post">
     {% csrf_token %} {{ form.as_p }}
