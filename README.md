@@ -60,6 +60,19 @@ TEMPLATES = [
     },
 ]
 ```
+###### htmlファイルについて
+- 指定しなければdjangoが勝手にファイル名を指定し、ルーティングするっぽい
+  - 例「TaskList」というクラスベースのviewを作成していれば、「task_list.html」等
+  - 指定方法は下記
+```python
+# 下記のように「template_name_suffix」で指定する
+# 今回は「Task_update_form.html」となる
+class TaskUpdate(UpdateView):
+    model = Task
+    fields = "__all__"
+    template_name_suffix = "_update_form"
+    success_url = reverse_lazy("tasks")
+```
 
 ### リダイレクト
 ###### クラスベースでviews.pyを定義してる場合

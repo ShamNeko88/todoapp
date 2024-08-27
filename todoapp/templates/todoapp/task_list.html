@@ -1,5 +1,11 @@
 {% if request.user.is_authenticated %}
 <p>ログインユーザー：{{request.user}}</p>
+<form action="{% url 'logout' %}" method="POST", name="f_logout">
+    {% csrf_token %}
+    <input type="submit" value="ログアウト">
+</form>
+{% else %}
+<a href="{% url 'login' %}">ログイン</a>
 {% endif %}
 
 <h1>Todoリスト</h1>
