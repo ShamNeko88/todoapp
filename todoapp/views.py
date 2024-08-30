@@ -31,13 +31,18 @@ class TaskDetail(LoginRequiredMixin, DetailView):
 
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
-    fields = "__all__"
+    fields = ["title", "description", "completed"]
     success_url = reverse_lazy("tasks")
+
+    # タスク追加時にログインユーザーを指定
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
-    fields = "__all__"
+    fields = ["title", "description", "completed"]
     template_name_suffix = "_update_form"
     success_url = reverse_lazy("tasks")
 
