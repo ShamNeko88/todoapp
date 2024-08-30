@@ -21,11 +21,20 @@ class TaskList(LoginRequiredMixin, ListView):
     # オブジェクト名の定義
     context_object_name = "tasks"
 
-    # ユーザーに紐づいたリストを表示させる
+    # フィルタリング
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # ログインユーザーでフィルタリング
         context["tasks"] = context["tasks"].filter(user=self.request.user)
+
+        # 検索（name属性がsearchの要素の入手）
+        search_input_text = self.request.GET.get("search") or ""
+        if search_input_text:
+            context["tasks"] = context["tasks"].filter(
+                title__startswith=search_input_text
+            )
+        # 検索後に値を消えないようにする
+        context["search"] = search_input_text
         return context
 
 
