@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 
-# ログインしていないとアクセスできない
+# ログインしていないとアクセスさせないやつ
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from todoapp.models import Task
@@ -16,26 +16,33 @@ class TaskList(LoginRequiredMixin, ListView):
     # オブジェクト名の定義
     context_object_name = "tasks"
 
+    # ユーザーに紐づいたリストを表示させる
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # ログインユーザーでフィルタリング
+        context["tasks"] = context["tasks"].filter(user=self.request.user)
+        return context
 
-class TaskDetail(DetailView):
+
+class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
     context_object_name = "task"
 
 
-class TaskCreate(CreateView):
+class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     fields = "__all__"
     success_url = reverse_lazy("tasks")
 
 
-class TaskUpdate(UpdateView):
+class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields = "__all__"
     template_name_suffix = "_update_form"
     success_url = reverse_lazy("tasks")
 
 
-class TaskDelete(DeleteView):
+class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
     fields = "__all__"
     success_url = reverse_lazy("tasks")
