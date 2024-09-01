@@ -1,3 +1,7 @@
+{% extends 'todoapp/base.html' %}
+
+{% block content %}
+
 <h1>新規登録</h1>
 
 <form action="" method="POST">
@@ -6,3 +10,5 @@
 </form>
 <p>ログイン画面に戻る↓</p>
 <a href="{% url 'login' %}">ログイン</a>
+
+{% endblock content %}
