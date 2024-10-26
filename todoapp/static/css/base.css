@@ -1,0 +1,70 @@
+body {
+    background-color: rgb(220, 236, 236);
+    font-family: "M PLUS 1p";
+    padding-top: 55px;
+}
+
+.todoAppWrapper {
+    max-width: 530px;
+    margin: 0 auto;
+    background-color: rgb(210, 250, 255);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    /* 影を広げる */
+    border-radius: 10px;
+    padding: 1%;
+}
+
+a {
+    color: #595959;
+    text-decoration: none;
+
+}
+
+.header {
+    text-align: center;
+    padding: 20xp 0;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg,
+            rgba(2, 0, 36, 1) 0%,
+            rgba(179, 210, 217, 1) 0%,
+            rgba(17, 177, 209, 1) 100%);
+    border-radius: 10px;
+    color: white;
+}
+
+.taskWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-top: 1px solid rgb(71, 70, 70);
+}
+
+.taskTitle {
+    display: flex;
+    align-items: center;
+}
+
+.taskCompletedIcon {
+    height: 20px;
+    width: 20px;
+    background-color: rgb(34, 255, 0);
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.taskInCompletedIcon {
+    height: 20px;
+    width: 20px;
+    background-color: rgb(192, 194, 192);
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.loginAndLogout form input {
+    color: chocolate;
+}
+
+.deleteButton {
+    color:rgb(255, 0, 0)
+}
